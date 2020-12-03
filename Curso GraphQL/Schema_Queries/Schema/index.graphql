@@ -1,0 +1,7 @@
+#import Usuario, Perfil from 'Usuario.graphql'
+#import Query from 'Query.graphql'
+#import Produto from 'Produto.graphql'
+
+#instalar dependencia import npm i -s graphql-import
+
+scalar Date
