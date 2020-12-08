@@ -1,4 +1,5 @@
 const { usuarios, proximoId } = require("../../data/db");
+const perfis = require("./perfis");
 
 function indiceUsuario(filtro) {
   if (!filtro) {
@@ -14,6 +15,8 @@ function indiceUsuario(filtro) {
   }
   return -1;
 }
+
+
 
 module.exports = {
   //{ nome, email, idade }
