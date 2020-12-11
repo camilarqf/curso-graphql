@@ -16,6 +16,7 @@ npx knex init => cria o knexfile.js (arquivo p/configurar o bd)
 * npx knex migrate:make tabela_perfis 
 * npx knex migrate:make tabela_usuarios
 * npx knex migrate:make tabela_usuarios_perfis
-
+* npx knex migrate:latest => aplicar
+* npx knex migrate:rollback => voltar
 
 
