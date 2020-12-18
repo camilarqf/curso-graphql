@@ -1,4 +1,5 @@
 const db = require('../../config/db')
+const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
     usuarios() {
