@@ -1,16 +1,19 @@
-require('dotenv').config();
-const { ApolloServer, gql } = require('apollo-server')
-const { importSchema } = require('graphql-import')
-const resolvers = require('./resolvers')
-const context = require('./config/context')
+require("dotenv").config();
+const { ApolloServer, gql } = require("apollo-server");
+const { importSchema } = require("graphql-import");
+const resolvers = require("./resolvers");
+const context = require("./config/context");
 
-const schemaPath = './schema/index.graphql'
+const schemaPath = "./schema/index.graphql";
 const server = new ApolloServer({
-    typeDefs: importSchema(schemaPath),
-    resolvers,
-    context,
-})
+  typeDefs: importSchema(schemaPath),
+  resolvers,
+  context,
+});
 
 server.listen().then(({ url }) => {
-    console.log(`Executando em ${url}`)
-})
+  console.log(`Executando em ${url}`);
+});
+/* server.listen({ port: 8081 }).then(({ url }) => {
+  console.log(`Server ready at ${url}`);
+}); */
