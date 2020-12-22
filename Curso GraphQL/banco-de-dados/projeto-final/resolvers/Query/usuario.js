@@ -20,10 +20,12 @@ module.exports = {
 
     return getUsuarioLogado(usuario);
   },
-  usuarios() {
+  usuarios(parent, args, context) {
+     context && context.validarAdmin();
     return db("usuarios");
   },
   usuario(_, { filtro }) {
+     context && context.validarUsuarioFiltro(filtro);
     if (!filtro) return null;
     const { id, email } = filtro;
     if (id) {

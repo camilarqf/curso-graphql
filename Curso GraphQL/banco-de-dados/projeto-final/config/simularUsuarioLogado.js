@@ -17,17 +17,18 @@ const sql = `
 `;
 
 const getUsuario = async (nomePerfil) => {
-  const res = await db.raw(sql, { nomePerfil });
-  return res ? res[0] : null;
+    const res = await db.raw(sql, { nomePerfil });
+    //console.log(res);
+    return res ? res.rows[0] : null;
 };
 
 module.exports = async (req) => {
-  const usuario = await getUsuario("admin");
-  if (usuario) {
-    const { token } = await getUsuarioLogado(usuario);
-    //retornar um token para colocar nos cabeçalhos da requisição
-    req.headers = {
-      authorization: `Bearer ${token}`,
-    };
-  }
+    const usuario = await getUsuario("comum");
+    if (usuario) {
+        const { token } = await getUsuarioLogado(usuario);
+        //retornar um token para colocar nos cabeçalhos da requisição
+        req.headers = {
+            authorization: `Bearer ${token}`,
+        };
+    }
 };

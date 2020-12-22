@@ -2,17 +2,21 @@ const db = require('../../config/db')
 const { perfil: obterPerfil } = require('../Query/perfil')
 
 module.exports = {
-    async novoPerfil(_, { dados }) {
+    async novoPerfil(_, { dados }, context) {
+        context && context.validarAdmin();
+
         try {
             const [ id ] = await db('perfis')
-                .insert(dados)
+                .insert(dados).returning('id')
             return db('perfis')
                 .where({ id }).first()
         } catch(e) {
-            throw new Error(e.sqlMessage)
+            throw new Error(e)
         }
     },
-    async excluirPerfil(_, args) {
+    async excluirPerfil(_, args, context) {
+        context && context.validarAdmin();
+
         try {
             const perfil = await obterPerfil(_, args)
             if(perfil) {
@@ -27,7 +31,9 @@ module.exports = {
             throw new Error(e.sqlMessage)
         }
     },
-    async alterarPerfil(_, { filtro, dados }) {
+    async alterarPerfil(_, { filtro, dados} , context ) {
+        context && context.validarAdmin();
+
         try {
             const perfil = await obterPerfil(_, { filtro })
             if(perfil) {
